@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-// #include <chrono>
-// #include <ctime>
 
 class FootballPlayer
 {
@@ -19,8 +17,6 @@ class FootballPlayer
             {
                 std::cout << "The constructor has been invoked" << std::endl;
             }
-
-        FootballPlayer() {}
 
         std::string getFullName() const
         {
@@ -90,21 +86,25 @@ class FootballPlayer
                 << "Goals scored: " << goals << std::endl;
         }
 
-        FootballPlayer operator=(FootballPlayer fp)
-        {
-            firstName = fp.firstName;
-            lastName = fp.lastName;
-            age = fp.age;
-            position = fp.position;
-            team = fp.team;
-            return *this;
-        }
+        FootballPlayer& operator=(const FootballPlayer& fp);
 
         ~FootballPlayer()
         {
             std::cout << "Destructor has been called for " << this->getFullName() << std::endl;
         }
 };
+
+
+FootballPlayer& FootballPlayer::operator=(const FootballPlayer& fp)
+{
+    firstName = fp.firstName;
+    lastName = fp.lastName;
+    age = fp.age;
+    position = fp.position;
+    team = fp.team;
+    goals += fp.goals;
+    return *this;
+}
 
 int main()
 {
@@ -135,12 +135,13 @@ int main()
     fp1->displayFootballerInfo();
     fp2->displayFootballerInfo(); 
 
-    fp2 = fp1;
+    *fp2 = *fp1;
 
+    fp1->displayFootballerInfo();
     fp2->displayFootballerInfo();
 
     delete fp1;
-    //delete fp2;
+    delete fp2;
 
     return 0;
 }
