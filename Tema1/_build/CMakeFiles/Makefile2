@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /home/emanuel/Documents/PAOO_teme/Tema1/_build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/tema1.dir/all
+all: CMakeFiles/tema2.dir/all
 
 .PHONY : all
 
@@ -63,36 +63,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/tema1.dir/clean
+clean: CMakeFiles/tema2.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/tema1.dir
+# Target rules for target CMakeFiles/tema2.dir
 
 # All Build rule for target.
-CMakeFiles/tema1.dir/all:
-	$(MAKE) -f CMakeFiles/tema1.dir/build.make CMakeFiles/tema1.dir/depend
-	$(MAKE) -f CMakeFiles/tema1.dir/build.make CMakeFiles/tema1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles --progress-num=1,2 "Built target tema1"
-.PHONY : CMakeFiles/tema1.dir/all
+CMakeFiles/tema2.dir/all:
+	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/depend
+	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles --progress-num=1,2 "Built target tema2"
+.PHONY : CMakeFiles/tema2.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/tema1.dir/rule: cmake_check_build_system
+CMakeFiles/tema2.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/tema1.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/tema2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles 0
-.PHONY : CMakeFiles/tema1.dir/rule
+.PHONY : CMakeFiles/tema2.dir/rule
 
 # Convenience name for target.
-tema1: CMakeFiles/tema1.dir/rule
+tema2: CMakeFiles/tema2.dir/rule
 
-.PHONY : tema1
+.PHONY : tema2
 
 # clean rule for target.
-CMakeFiles/tema1.dir/clean:
-	$(MAKE) -f CMakeFiles/tema1.dir/build.make CMakeFiles/tema1.dir/clean
-.PHONY : CMakeFiles/tema1.dir/clean
+CMakeFiles/tema2.dir/clean:
+	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/clean
+.PHONY : CMakeFiles/tema2.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

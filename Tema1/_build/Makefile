@@ -80,17 +80,6 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -123,6 +112,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -157,17 +157,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tema1
+# Target rules for targets named tema2
 
 # Build rule for target.
-tema1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tema1
-.PHONY : tema1
+tema2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tema2
+.PHONY : tema2
 
 # fast build rule for target.
-tema1/fast:
-	$(MAKE) -f CMakeFiles/tema1.dir/build.make CMakeFiles/tema1.dir/build
-.PHONY : tema1/fast
+tema2/fast:
+	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/build
+.PHONY : tema2/fast
 
 main.o: main.cpp.o
 
@@ -175,7 +175,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/tema1.dir/build.make CMakeFiles/tema1.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -184,7 +184,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/tema1.dir/build.make CMakeFiles/tema1.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -193,7 +193,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/tema1.dir/build.make CMakeFiles/tema1.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -204,11 +204,11 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... tema1"
+	@echo "... edit_cache"
+	@echo "... tema2"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
