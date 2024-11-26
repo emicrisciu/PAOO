@@ -461,3 +461,31 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_396c1/fast && /usr/bin/make -f CMakeFiles/cmTC_396c1.dir/build.make CMakeFiles/cmTC_396c1.dir/build
+make[1]: Entering directory '/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_396c1.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_396c1.dir/CheckIncludeFile.c.o   -c /home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_396c1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_396c1.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_396c1.dir/CheckIncludeFile.c.o  -o cmTC_396c1 
+make[1]: Leaving directory '/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_7bf31/fast && /usr/bin/make -f CMakeFiles/cmTC_7bf31.dir/build.make CMakeFiles/cmTC_7bf31.dir/build
+make[1]: Entering directory '/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7bf31.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_7bf31.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_7bf31
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7bf31.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_7bf31.dir/CheckFunctionExists.c.o  -o cmTC_7bf31  -lpthread 
+make[1]: Leaving directory '/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/CMakeTmp'
+
+
+

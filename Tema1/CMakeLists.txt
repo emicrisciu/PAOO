@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.0)
 
 project(app_project)
 
-add_executable(tema2 main.cpp)
+#set(CMAKE_CXX_STANDARD 11)
 
-install(TARGETS tema2 DESTINATION bin)
+add_executable(tema3 main.cpp)
+
+# Find and link pthread
+find_package(Threads REQUIRED)
+target_link_libraries(tema3 Threads::Threads)

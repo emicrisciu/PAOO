@@ -56,52 +56,6 @@ CMAKE_BINARY_DIR = /home/emanuel/Documents/PAOO_teme/Tema1/_build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -157,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tema2
+# Target rules for targets named tema3
 
 # Build rule for target.
-tema2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tema2
-.PHONY : tema2
+tema3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tema3
+.PHONY : tema3
 
 # fast build rule for target.
-tema2/fast:
-	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/build
-.PHONY : tema2/fast
+tema3/fast:
+	$(MAKE) -f CMakeFiles/tema3.dir/build.make CMakeFiles/tema3.dir/build
+.PHONY : tema3/fast
 
 main.o: main.cpp.o
 
@@ -175,7 +129,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/tema3.dir/build.make CMakeFiles/tema3.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -184,7 +138,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/tema3.dir/build.make CMakeFiles/tema3.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -193,7 +147,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/tema2.dir/build.make CMakeFiles/tema2.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/tema3.dir/build.make CMakeFiles/tema3.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -202,13 +156,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
-	@echo "... install/local"
-	@echo "... install"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... tema2"
+	@echo "... tema3"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

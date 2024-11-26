@@ -1,5 +1,8 @@
 #include <iostream>
 #include <string>
+#include <mutex>
+#include <thread>
+#include <memory>
 
 class Sportsman
 {
@@ -78,6 +81,7 @@ class FootballPlayer : public Sportsman
         std::string position;
         std::string team;
         int goals;
+        std::mutex goalsMutex;
 
     public:
         // constructor
@@ -134,6 +138,7 @@ class FootballPlayer : public Sportsman
 
         void scoreGoal()
         {
+            std::lock_guard<std::mutex> lock(goalsMutex); // Lock the mutex
             goals++;
             std::cout << "A goal has been scored!" << std::endl;
         }
@@ -166,6 +171,14 @@ FootballPlayer& FootballPlayer::operator=(const FootballPlayer& fp)
     return *this;
 }
 
+void scoreGoalsConcurrently(FootballPlayer& player, int numGoals)
+{
+    for (int i = 0; i < numGoals; ++i)
+    {
+        player.scoreGoal();
+    }
+}
+
 int main()
 {
     FootballPlayer *fp1 = new FootballPlayer("Lionel", "Messi", 37, "CF", "Inter Miami");
@@ -190,11 +203,26 @@ int main()
     FootballPlayer fp6 = std::move(fp5);
 
     fp6.displaySportsmanInfo();
-    for(int i = 0; i < 3; i++) fp6.scoreGoal();
+    //for(int i = 0; i < 3; i++) fp6.scoreGoal();
     fp5.displaySportsmanInfo();
     fp6.displaySportsmanInfo();
 
     std::cout << "\n" << "CONSTRUCTORS ZONE DONE!" << "\n" << std::endl;
+
+    std::unique_ptr<FootballPlayer> fp7(new FootballPlayer("Cristian", "Chivu", 37, "CF", "Inter Milano"));
+    fp7->displaySportsmanInfo();
+    fp7->scoreGoal();
+    std::unique_ptr<FootballPlayer> fp8 = std::move(fp7);
+    fp8->displaySportsmanInfo();
+
+    std::shared_ptr<FootballPlayer> fp9(new FootballPlayer("Andres", "Iniesta", 40, "CM", "Barcelona"));
+    std::shared_ptr<FootballPlayer> fp10 = fp9;
+
+    std::cout << "fp9 is pointing to: " << fp9->getFullName() << std::endl;
+    std::cout << "fp10 is pointing to: " << fp10->getFullName() << std::endl;
+
+    fp9->scoreGoal();
+    std::cout << fp10->getGoals() << std::endl;
     
     fp1->setFirstName("Lionel Andres");
     fp1->setAge(25);
@@ -209,12 +237,22 @@ int main()
     s1->setFirstName("Ianis");
     s1->setAge(25);
 
-    for(int i = 0; i < 10; i++)
-    {
-        if(i < 2) fp6.scoreGoal();
-        if(i < 5) fp2->scoreGoal();
-        fp1->scoreGoal();
-    }
+    // for(int i = 0; i < 10; i++)
+    // {
+    //     if(i < 2) fp6.scoreGoal();
+    //     if(i < 5) fp2->scoreGoal();
+    //     fp1->scoreGoal();
+    // }
+
+    // goals scored with threads
+    std::thread t1(scoreGoalsConcurrently, std::ref(fp4), 5); // Thread 1 scores 5 goals
+    std::thread t2(scoreGoalsConcurrently, std::ref(fp4), 7); // Thread 2 scores 7 goals
+
+    // Join threads to ensure all threads complete
+    t1.join();
+    t2.join();
+
+    std::cout << "ANA" << std::endl;
 
     fp1->displaySportsmanInfo();
     fp2->displaySportsmanInfo();

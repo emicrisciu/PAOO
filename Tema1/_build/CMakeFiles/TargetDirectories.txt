@@ -1,7 +1,3 @@
-/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/install/strip.dir
-/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/install/local.dir
-/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/install.dir
-/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/list_install_components.dir
 /home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/rebuild_cache.dir
 /home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/edit_cache.dir
-/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/tema2.dir
+/home/emanuel/Documents/PAOO_teme/Tema1/_build/CMakeFiles/tema3.dir
