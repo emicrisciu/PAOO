@@ -171,6 +171,7 @@ FootballPlayer& FootballPlayer::operator=(const FootballPlayer& fp)
     return *this;
 }
 
+// wrapper method needed for working with threads
 void scoreGoalsConcurrently(FootballPlayer& player, int numGoals)
 {
     for (int i = 0; i < numGoals; ++i)
@@ -185,13 +186,14 @@ int main()
     FootballPlayer *fp2 = new FootballPlayer("Cristiano", "Ronaldo", 39, "ST", "Al Nassr");
 
     Sportsman *s = new FootballPlayer("Gheorghe", "Hagi", 40, "CAM", "Steaua Bucuresti");
-    Sportsman *s1 = new Sportsman(*s);
+    Sportsman *s1 = new Sportsman(*s); // use copy constructor
 
     FootballPlayer fp3("Adrian", "Mutu", 30, "ST", "Fiorentina");
-    FootballPlayer fp4 = fp3;
+    FootballPlayer fp4 = fp3;   // use copy constructor
 
     FootballPlayer fp5("Lamine", "Yamal", 17, "RW", "FC Barcelona");
 
+    // display objects' info
     fp1->displaySportsmanInfo();
     fp2->displaySportsmanInfo();
     s->displaySportsmanInfo();
@@ -200,30 +202,37 @@ int main()
     fp4.displaySportsmanInfo();
     fp5.displaySportsmanInfo();
 
-    FootballPlayer fp6 = std::move(fp5);
-
+    FootballPlayer fp6 = std::move(fp5);    // use move constructor
     fp6.displaySportsmanInfo();
-    //for(int i = 0; i < 3; i++) fp6.scoreGoal();
+
+    // make changes on new reference and see what happens with the old one as well
+    for(int i = 0; i < 3; i++) fp6.scoreGoal();
     fp5.displaySportsmanInfo();
     fp6.displaySportsmanInfo();
 
     std::cout << "\n" << "CONSTRUCTORS ZONE DONE!" << "\n" << std::endl;
 
+    // work with unique pointers
     std::unique_ptr<FootballPlayer> fp7(new FootballPlayer("Cristian", "Chivu", 37, "CF", "Inter Milano"));
     fp7->displaySportsmanInfo();
     fp7->scoreGoal();
-    std::unique_ptr<FootballPlayer> fp8 = std::move(fp7);
+    std::unique_ptr<FootballPlayer> fp8 = std::move(fp7);   // transfer ownership from fp7 to fp8
+    //fp7->displaySportsmanInfo(); // generates an error
     fp8->displaySportsmanInfo();
 
+    // work with shared pointers
     std::shared_ptr<FootballPlayer> fp9(new FootballPlayer("Andres", "Iniesta", 40, "CM", "Barcelona"));
-    std::shared_ptr<FootballPlayer> fp10 = fp9;
+    std::shared_ptr<FootballPlayer> fp10 = fp9; // share ownership between fp9 and fp10
 
+    // check if both references point to the same object
     std::cout << "fp9 is pointing to: " << fp9->getFullName() << std::endl;
     std::cout << "fp10 is pointing to: " << fp10->getFullName() << std::endl;
 
+    // make a change through one of the "owners" and then check another one to see if the changes are visible for all "owners"
     fp9->scoreGoal();
     std::cout << fp10->getGoals() << std::endl;
     
+    // modify some attributes
     fp1->setFirstName("Lionel Andres");
     fp1->setAge(25);
     fp1->setTeam("FC Barcelona");
@@ -237,33 +246,31 @@ int main()
     s1->setFirstName("Ianis");
     s1->setAge(25);
 
-    // for(int i = 0; i < 10; i++)
-    // {
-    //     if(i < 2) fp6.scoreGoal();
-    //     if(i < 5) fp2->scoreGoal();
-    //     fp1->scoreGoal();
-    // }
+    for(int i = 0; i < 10; i++)
+    {
+        if(i < 2) fp6.scoreGoal();
+        if(i < 5) fp2->scoreGoal();
+        fp1->scoreGoal();
+    }
 
     // goals scored with threads
-    std::thread t1(scoreGoalsConcurrently, std::ref(fp4), 5); // Thread 1 scores 5 goals
-    std::thread t2(scoreGoalsConcurrently, std::ref(fp4), 7); // Thread 2 scores 7 goals
+    std::thread t1(scoreGoalsConcurrently, std::ref(fp4), 5); // thread 1: fp4 scores 5 goals
+    std::thread t2(scoreGoalsConcurrently, std::ref(fp4), 7); // thread 2: fp4 scores 7 goals
 
-    // Join threads to ensure all threads complete
+    // join threads to ensure all threads complete
     t1.join();
     t2.join();
-
-    std::cout << "ANA" << std::endl;
 
     fp1->displaySportsmanInfo();
     fp2->displaySportsmanInfo();
     s->displaySportsmanInfo();
     s1->displaySportsmanInfo();
     fp3.displaySportsmanInfo();
-    fp4.displaySportsmanInfo();
+    fp4.displaySportsmanInfo(); // here fp4 should have 12 goals
     fp5.displaySportsmanInfo();
     fp6.displaySportsmanInfo();
 
-    *fp2 = *fp1;
+    *fp2 = *fp1;    // demonstrate the overloading of the assignment operator
 
     fp1->displaySportsmanInfo();
     fp2->displaySportsmanInfo();
